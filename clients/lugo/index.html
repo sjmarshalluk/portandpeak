@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lugo — studio shmmm</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&family=Averia+Serif+Libre&display=swap" rel="stylesheet" />
+  <link href="../../css/main.css" rel="stylesheet" />
+  <style>
+    body { text-align: left; }
+
+    .client-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      gap: 24px;
+    }
+
+    .client-header .logo {
+      text-decoration: none;
+    }
+
+    .client-name {
+      font-family: 'Averia Serif Libre', serif;
+      font-size: 18px;
+      color: var(--muted);
+      letter-spacing: -0.01em;
+    }
+
+    .client-name span {
+      color: var(--ink);
+    }
+
+    .design-bar {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .design-btn {
+      display: inline-block;
+      padding: 10px 22px;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+
+    .design-btn:hover {
+      border-color: var(--ink);
+    }
+
+    .design-btn.active {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    .frame-wrap {
+      width: 100%;
+      height: calc(100vh - 81px);
+      background: var(--surface);
+    }
+
+    .frame-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .client-header {
+        padding: 14px 20px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .design-bar {
+        position: static;
+        transform: none;
+      }
+      .frame-wrap {
+        height: calc(100vh - 180px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="client-header">
+    <a href="../../index.html" class="logo">studio shmmm</a>
+    <nav class="design-bar" id="designBar"></nav>
+    <p class="client-name">Client / <span>Lugo</span></p>
+  </header>
+
+  <div class="frame-wrap">
+    <iframe id="designFrame" title="Design preview" loading="lazy"></iframe>
+  </div>
+
+  <script>
+    const designs = [
+      { name: 'Design 1', url: './design1.html' },
+      { name: 'Design 2', url: './design2.html' },
+      { name: 'Design 3', url: './design3.html' },
+    ];
+
+    const bar = document.getElementById('designBar');
+    const frame = document.getElementById('designFrame');
+
+    function show(i) {
+      frame.src = designs[i].url;
+      [...bar.children].forEach((btn, idx) => {
+        btn.classList.toggle('active', idx === i);
+      });
+    }
+
+    designs.forEach((d, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'design-btn';
+      btn.textContent = d.name;
+      btn.addEventListener('click', () => show(i));
+      bar.appendChild(btn);
+    });
+
+    show(0);
+  </script>
+
+</body>
+</html>
