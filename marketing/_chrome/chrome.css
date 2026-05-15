@@ -1,0 +1,118 @@
+:root {
+  --pp-canvas: #FFFFFF;
+  --pp-ink: #000000;
+  --pp-surface-soft: #F5F5F4;
+  --pp-hairline: #E6E4DF;
+  --pp-hairline-soft: #EFEDE8;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--pp-canvas);
+  color: var(--pp-ink);
+  font-family: 'Google Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.pp-chrome-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 32px;
+  background: var(--pp-canvas);
+  border-bottom: 1px solid var(--pp-hairline-soft);
+  gap: 24px;
+}
+
+.pp-brand {
+  font-weight: 540;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: -0.018em;
+  color: var(--pp-ink);
+  text-decoration: none;
+}
+
+.pp-design-bar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pp-design-btn {
+  padding: 7px 16px;
+  border: 1px solid var(--pp-hairline);
+  border-radius: 100px;
+  background: var(--pp-canvas);
+  color: var(--pp-ink);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.pp-design-btn:hover { border-color: var(--pp-ink); }
+.pp-design-btn.active {
+  background: var(--pp-ink);
+  color: var(--pp-canvas);
+  border-color: var(--pp-ink);
+}
+
+.pp-stamp {
+  background: rgba(0, 0, 0, 0.85);
+  color: var(--pp-canvas);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.pp-frame {
+  width: 100%;
+  height: calc(100vh - 64px);
+  background: var(--pp-surface-soft);
+}
+
+.pp-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  html, body { overflow: auto; height: auto; }
+  .pp-chrome-header {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    padding: 16px 20px;
+    gap: 12px;
+  }
+  .pp-design-bar {
+    position: static;
+    transform: none;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .pp-stamp { align-self: flex-end; }
+  .pp-frame { height: calc(100vh - 180px); }
+}
