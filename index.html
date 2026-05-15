@@ -685,7 +685,7 @@
         <div class="help-row">
           <span class="idx">04</span>
           <span class="name">A little AI help, if useful</span>
-          <span class="desc">Curious about ChatGPT or similar tools for your business? We're happy to point you to what's actually worth using. Not a core service, just something we can help with.</span>
+          <span class="desc">Curious about ChatGPT or similar tools for your business? We're happy to point you to what's actually worth using.</span>
         </div>
       </div>
     </div>
@@ -812,7 +812,7 @@
       <span class="mono eyebrow cb-eyebrow">Pricing</span>
       <div class="price-flat">
         <div class="price-lead">
-          Simple websites typically start around <span class="num">$500&ndash;$1,500</span>, depending on scope.
+          Simple websites typically start around <span class="num" data-price data-usd="$500&ndash;$1,500" data-gbp="&pound;400&ndash;&pound;1,200">$500&ndash;$1,500</span>, depending on scope.
         </div>
         <p>
           Every project is a little different, so we'll give you a clear, fixed quote after our first chat — no packages, no surprises, no upsells.
@@ -895,10 +895,23 @@
     </div>
     <div class="ft-bot">
       <span>© 2026 Port &amp; Peak</span>
-      <span>Spotify · Amazon · Meta alumni</span>
     </div>
   </div>
 </footer>
 
+<script>
+  (function () {
+    try {
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      var ukZones = ['Europe/London', 'Europe/Belfast', 'Europe/Guernsey', 'Europe/Jersey', 'Europe/Isle_of_Man'];
+      var isUK = ukZones.indexOf(tz) !== -1;
+      if (!isUK) return;
+      document.querySelectorAll('[data-price]').forEach(function (el) {
+        var gbp = el.getAttribute('data-gbp');
+        if (gbp) el.innerHTML = gbp;
+      });
+    } catch (e) { /* fall back to USD */ }
+  })();
+</script>
 </body>
 </html>
