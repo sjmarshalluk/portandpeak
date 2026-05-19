@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lugo — Altrincham</title>
+<meta name="description" content="Lugo is a neighbourhood coffee shop in Altrincham. Coffee, bakes, and unhurried mornings." />
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --sage:        #8fa593;
+    --sage-deep:   #6a8576;
+    --sage-dark:   #4b6457;
+    --cream:       #fbfaf6;
+    --cream-warm:  #f4ede0;
+    --ink:         #1f2620;
+    --ink-soft:    #4a5249;
+    --rule-cream:  rgba(251, 250, 246, 0.22);
+    --rule-ink:    rgba(31, 38, 32, 0.16);
+
+    --serif:       'Playfair Display', 'Times New Roman', Georgia, serif;
+    --sans:        'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --max:         1300px;
+    --gutter:      clamp(22px, 4vw, 64px);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background: var(--sage); }
+  body {
+    font-family: var(--sans);
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; background: none; border: 0; color: inherit; }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  /* Type ----------------------------------------------------------- */
+  .serif { font-family: var(--serif); }
+  .italic { font-style: italic; }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-weight: 500;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+    line-height: 1.45;
+  }
+  .display {
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+  }
+  h2.display { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+  h3.display { font-size: clamp(1.6rem, 2.8vw, 2.2rem); }
+
+  /* Header --------------------------------------------------------- */
+  header.site {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 28px 0;
+    color: var(--cream);
+  }
+  header.site.scrolled {
+    position: fixed;
+    background: var(--cream);
+    color: var(--ink);
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-ink);
+    transition: padding 0.25s ease;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .brand .mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.8rem;
+    line-height: 1;
+    font-weight: 500;
+  }
+  .brand .word {
+    font-family: var(--sans);
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-size: 0.76rem;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .nav-links a {
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+  .nav-links a:hover { border-bottom-color: currentColor; }
+
+  .menu-toggle { display: none; padding: 6px; }
+  @media (max-width: 820px) {
+    .nav-links { display: none; }
+    .menu-toggle { display: block; }
+    .nav-links.open {
+      display: flex;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      background: var(--cream);
+      color: var(--ink);
+      padding: 20px var(--gutter);
+      gap: 16px;
+      border-bottom: 1px solid var(--rule-ink);
+    }
+    .nav-links.open a { color: var(--ink) !important; }
+  }
+
+  /* Hero — sage poster with giant italic L -------------------------- */
+  .hero {
+    background: var(--sage);
+    color: var(--cream);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 100px 0 60px;
+  }
+  .hero-mark {
+    position: absolute;
+    top: 50%;
+    right: var(--gutter);
+    transform: translateY(-50%);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cream);
+    font-size: clamp(20rem, 50vw, 44rem);
+    line-height: 0.82;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+  }
+  .hero-mark::after {
+    content: '';
+    position: absolute;
+    bottom: 16%;
+    right: -2%;
+    width: 0.18em;
+    height: 0.18em;
+    background: var(--cream-warm);
+    border-radius: 50%;
+  }
+  @media (max-width: 820px) {
+    .hero-mark { right: -12%; font-size: 38rem; }
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+  }
+  .hero-inner .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 620px) 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  @media (max-width: 820px) {
+    .hero-inner .wrap { grid-template-columns: 1fr; }
+  }
+  .hero-tag {
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-tag .pip {
+    width: 8px; height: 8px;
+    background: var(--cream);
+    border-radius: 50%;
+  }
+  .hero-headline {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 6vw, 4.6rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+  .hero-headline em { font-style: italic; font-weight: 400; }
+  .hero-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+    max-width: 460px;
+    color: var(--cream);
+    opacity: 0.92;
+    line-height: 1.45;
+  }
+  .hero-meta {
+    text-align: right;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.85;
+    line-height: 1.9;
+  }
+  @media (max-width: 820px) {
+    .hero-meta { text-align: left; }
+  }
+
+  .hero-foot {
+    position: relative;
+    z-index: 2;
+    margin-top: 80px;
+    border-top: 1px solid var(--rule-cream);
+    padding-top: 28px;
+  }
+  .hero-foot .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.88;
+  }
+  .hero-foot .scroll-cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-foot .scroll-cue::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--cream);
+    opacity: 0.6;
+  }
+
+  /* Section base --------------------------------------------------- */
+  section.block { padding: clamp(100px, 12vw, 160px) 0; }
+  .section-label {
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--sage-dark);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .section-label::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--sage-dark);
+  }
+
+  /* Intro / about -------------------------------------------------- */
+  .intro {
+    background: var(--cream);
+    text-align: center;
+  }
+  .intro .wrap { max-width: 880px; }
+  .intro h2 {
+    margin-bottom: 36px;
+    color: var(--ink);
+  }
+  .intro h2 .italic { color: var(--sage-deep); }
+  .intro p {
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .intro p + p { margin-top: 1.1em; }
+  .intro .signature {
+    margin-top: 48px;
+    display: inline-block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--sage-deep);
+  }
+
+  /* Editorial split sections --------------------------------------- */
+  .editorial {
+    background: var(--cream);
+  }
+  .editorial.alt { background: var(--cream-warm); }
+  .editorial .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+  }
+  .editorial .row.reverse > div:first-child { order: 2; }
+  @media (max-width: 820px) {
+    .editorial .row { grid-template-columns: 1fr; gap: 40px; }
+    .editorial .row.reverse > div:first-child { order: 0; }
+  }
+  .editorial figure {
+    position: relative;
+  }
+  .editorial figure img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+  .editorial figure figcaption {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    background: rgba(31, 38, 32, 0.55);
+    backdrop-filter: blur(4px);
+  }
+  .editorial .text h2 { margin-bottom: 28px; color: var(--ink); }
+  .editorial .text h2 .italic { color: var(--sage-deep); }
+  .editorial .text p { color: var(--ink-soft); }
+  .editorial .text p + p { margin-top: 1em; }
+  .editorial .text .lede { margin: 22px 0 26px; color: var(--ink); }
+
+  .number-mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--sage);
+    margin-bottom: 22px;
+    opacity: 0.85;
+  }
+
+  /* Offerings ------------------------------------------------------ */
+  .offerings {
+    background: var(--sage);
+    color: var(--cream);
+  }
+  .offerings .head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: end;
+    margin-bottom: 72px;
+  }
+  @media (max-width: 820px) {
+    .offerings .head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 48px; }
+  }
+  .offerings .head h2 { color: var(--cream); max-width: 580px; }
+  .offerings .head .label-light {
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--cream);
+    opacity: 0.78;
+    margin-bottom: 28px;
+    display: inline-flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .offerings .head .label-light::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--cream);
+    opacity: 0.6;
+  }
+  .offerings .head p {
+    color: var(--cream);
+    opacity: 0.85;
+    max-width: 460px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+  .offer-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule-cream);
+    border-top: 1px solid var(--rule-cream);
+    border-bottom: 1px solid var(--rule-cream);
+  }
+  @media (max-width: 820px) { .offer-list { grid-template-columns: 1fr; } }
+  .offer {
+    background: var(--sage);
+    padding: 48px 36px 40px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .offer .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    opacity: 0.7;
+  }
+  .offer h3 {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 2.2rem;
+    line-height: 1;
+    color: var(--cream);
+  }
+  .offer p {
+    color: var(--cream);
+    opacity: 0.85;
+    font-size: 0.96rem;
+    margin-top: auto;
+  }
+  .offer .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .offer .tag-row span {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid var(--rule-cream);
+    border-radius: 999px;
+    color: var(--cream);
+    opacity: 0.88;
+  }
+
+  /* Pull quote ----------------------------------------------------- */
+  .pull {
+    background: var(--cream);
+    text-align: center;
+  }
+  .pull blockquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.7rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    max-width: 940px;
+    margin: 0 auto;
+    color: var(--ink);
+    position: relative;
+  }
+  .pull blockquote::before {
+    content: '"';
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 6rem;
+    line-height: 0.7;
+    color: var(--sage);
+    position: absolute;
+    top: -0.3em;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.6;
+  }
+  .pull cite {
+    display: block;
+    margin-top: 36px;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--sage-dark);
+  }
+
+  /* Gallery strip -------------------------------------------------- */
+  .gallery-section {
+    background: var(--cream);
+    padding: 0;
+  }
+  .gallery-strip {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 0;
+  }
+  @media (max-width: 820px) {
+    .gallery-strip { grid-template-columns: 1fr; }
+  }
+  .gallery-strip > div {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: var(--sage);
+  }
+  .gallery-strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  .gallery-strip > div:hover img { transform: scale(1.04); }
+
+  /* Visit ---------------------------------------------------------- */
+  .visit {
+    background: var(--cream-warm);
+  }
+  .visit .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 100px);
+    align-items: start;
+  }
+  @media (max-width: 820px) {
+    .visit .grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .visit h2 { margin-bottom: 36px; color: var(--ink); }
+  .visit h2 .italic { color: var(--sage-deep); }
+  .info-block {
+    border-top: 1px solid var(--rule-ink);
+    padding: 22px 0;
+  }
+  .info-block:last-of-type { border-bottom: 1px solid var(--rule-ink); }
+  .info-block h4 {
+    font-family: var(--sans);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--sage-dark);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .info-block p, .info-block a {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .info-block a { border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+  .info-block a:hover { color: var(--sage-deep); }
+
+  .visit-card {
+    background: var(--sage);
+    color: var(--cream);
+    padding: clamp(36px, 5vw, 56px);
+    aspect-ratio: 4 / 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .visit-card .mark-l {
+    position: absolute;
+    right: -8%; bottom: -22%;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 32rem;
+    line-height: 0.8;
+    color: var(--cream);
+    opacity: 0.14;
+    pointer-events: none;
+  }
+  .visit-card .top {
+    position: relative; z-index: 1;
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.88;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .visit-card .top::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--cream); opacity: 0.6;
+  }
+  .visit-card h3 {
+    position: relative; z-index: 1;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1;
+    max-width: 380px;
+  }
+  .visit-card .map-line {
+    position: relative; z-index: 1;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    opacity: 0.92;
+  }
+
+  /* Footer --------------------------------------------------------- */
+  footer.site {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 96px 0 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  footer.site::before {
+    content: 'L';
+    position: absolute;
+    right: -4%; top: -30%;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 44rem;
+    line-height: 0.8;
+    color: var(--cream);
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  .foot-grid {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 80px;
+  }
+  @media (max-width: 820px) {
+    .foot-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  }
+  footer.site .brand .word { color: var(--cream); }
+  footer.site .brand .mark { color: var(--cream); }
+  footer.site .tag {
+    margin-top: 22px;
+    color: rgba(251, 250, 246, 0.7);
+    max-width: 360px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.45;
+  }
+  footer.site h5 {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--sage);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  footer.site ul {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+  }
+  footer.site ul a {
+    color: rgba(251, 250, 246, 0.85);
+    font-size: 0.95rem;
+  }
+  footer.site ul a:hover { color: var(--cream); }
+  .copy {
+    position: relative; z-index: 1;
+    border-top: 1px solid rgba(251, 250, 246, 0.12);
+    padding-top: 26px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(251, 250, 246, 0.55);
+  }
+
+  /* Reveal --------------------------------------------------------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Lugo home">
+      <span class="mark">L</span>
+      <span class="word">Lugo</span>
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuBtn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M3 7h18M3 12h18M3 17h18" stroke-linecap="round" />
+      </svg>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#offerings">Menu</a></li>
+      <li><a href="#visit">Visit</a></li>
+      <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-mark" aria-hidden="true">L</div>
+
+  <div class="hero-inner">
+    <div class="wrap">
+      <div>
+        <div class="hero-tag">
+          <span class="pip"></span>
+          <span>Est. Altrincham · Coffee &amp; Bakery</span>
+        </div>
+        <h1 class="hero-headline">A small café for <em>good coffee</em>, fresh bakes, and unhurried mornings.</h1>
+        <p class="hero-sub">Sage walls, pale timber, white ceramics, and a counter you can lean on — six days a week in Stamford Quarter.</p>
+      </div>
+      <div class="hero-meta">
+        N 53° 23′<br/>
+        W 2° 21′<br/>
+        Mon — Sat<br/>
+        08.00 — 16.00
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-foot">
+    <div class="wrap">
+      <span>Lugo / 2026</span>
+      <span class="scroll-cue">Scroll to read</span>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="block intro" id="about">
+  <div class="wrap reveal">
+    <span class="section-label" style="justify-content: center; display: inline-flex;">A neighbourhood café</span>
+    <h2 class="display">Lugo is a small place built around <span class="italic">good coffee</span> and the people who come for it.</h2>
+    <p>We opened to make the kind of café we always wanted to find. Friendly, unhurried, and full of regulars who feel like they belong — without the polish that pushes people away or the rustic costume that pretends to be something it isn't.</p>
+    <p>Every cup is poured from beans roasted by independents we trust. Every bake leaves our kitchen the morning it's served. The menu shifts gently through the seasons.</p>
+    <span class="signature">— Lugo</span>
+  </div>
+</section>
+
+<!-- EDITORIAL: COFFEE -->
+<section class="block editorial">
+  <div class="wrap">
+    <div class="row reveal">
+      <figure>
+        <img src="images/487486818_122118943574790843_5374696814648542492_n.jpg" alt="A pour over being prepared on the counter" />
+        <figcaption>Pour over / 08.30</figcaption>
+      </figure>
+      <div class="text">
+        <span class="number-mark italic">01</span>
+        <span class="section-label">The coffee</span>
+        <h2 class="display">Single origins, <span class="italic">dialled in daily</span>.</h2>
+        <p class="lede">A rotating house espresso plus filters from independent roasters across the UK and Europe.</p>
+        <p>We taste, weigh, and time every brew — but we keep things friendly. If you're not sure what you're after, ask. We'll find the cup that fits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL: BAKERY (alt) -->
+<section class="block editorial alt">
+  <div class="wrap">
+    <div class="row reverse reveal">
+      <figure>
+        <img src="images/536106106_122150595974790843_8509739698126024699_n.jpg" alt="Bakes on the counter" />
+        <figcaption>Counter / 09.30</figcaption>
+      </figure>
+      <div class="text">
+        <span class="number-mark italic">02</span>
+        <span class="section-label">The bakery</span>
+        <h2 class="display">Made fresh, <span class="italic">each morning</span>.</h2>
+        <p class="lede">Croissants, pastries, cakes, and a short rota of seasonal bakes.</p>
+        <p>Our kitchen runs from before sunrise. Nothing comes in frozen, nothing sits past the day. What we run out of is what we run out of — come early for first pulls.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERINGS / MENU -->
+<section class="block offerings" id="offerings">
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <span class="label-light">On the menu</span>
+        <h2 class="display">A short list, <span class="italic">carefully kept</span>.</h2>
+      </div>
+      <p>Three things, well done. Coffee from independents we trust. Bakes from our own kitchen. Brunch plates that change with the seasons.</p>
+    </div>
+    <div class="offer-list reveal">
+      <article class="offer">
+        <span class="num italic">01</span>
+        <h3>Coffee</h3>
+        <p>House espresso, filter by the cup, and a rotating specials list for those after something different. Oat, whole, or skimmed — whichever suits.</p>
+        <div class="tag-row">
+          <span>Flat white</span>
+          <span>Filter</span>
+          <span>Cortado</span>
+        </div>
+      </article>
+      <article class="offer">
+        <span class="num italic">02</span>
+        <h3>Bakery</h3>
+        <p>Pastries, cakes, and pies baked fresh in our kitchen. Seasonal, never the same week twice — and almost always sold out by mid-afternoon.</p>
+        <div class="tag-row">
+          <span>Croissant</span>
+          <span>Tart</span>
+          <span>Cardamom bun</span>
+        </div>
+      </article>
+      <article class="offer">
+        <span class="num italic">03</span>
+        <h3>Brunch</h3>
+        <p>A short, careful menu of plates that change with the seasons. Veg-forward, properly cooked, and built from local growers when we can.</p>
+        <div class="tag-row">
+          <span>Eggs</span>
+          <span>Toast</span>
+          <span>Seasonal plate</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="block pull">
+  <div class="wrap reveal">
+    <blockquote>
+      Creating a small, quiet community around really good coffee — that's what we're here for.
+    </blockquote>
+    <cite>— The Lugo team</cite>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section reveal">
+  <div class="gallery-strip">
+    <div><img src="images/487505046_122118943646790843_6171120188053150695_n.jpg" alt="Cortado on a black table" /></div>
+    <div><img src="images/534411730_122150019236790843_6013541455202831100_n.jpg" alt="Inside Lugo, light through the window" /></div>
+    <div><img src="images/602991100_122168126648790843_6923641066276957987_n.jpg" alt="The shopfront" /></div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="block visit" id="visit">
+  <div class="wrap">
+    <div class="grid">
+      <div class="reveal">
+        <span class="section-label">Find us</span>
+        <h2 class="display">Stop by for a <span class="italic">slow morning</span>.</h2>
+
+        <div class="info-block">
+          <h4>Where</h4>
+          <p>Stamford Quarter<br/>Altrincham, Greater Manchester</p>
+        </div>
+        <div class="info-block">
+          <h4>Hours</h4>
+          <p>Weekdays · 08.00 – 16.00<br/>Weekends · 09.00 – 17.00</p>
+        </div>
+        <div class="info-block">
+          <h4>Say hello</h4>
+          <p>
+            <a href="mailto:hello@lugo.coffee">hello@lugo.coffee</a><br/>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener">@lugo.coffee</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="visit-card">
+          <span class="mark-l" aria-hidden="true">L</span>
+          <div class="top">A few steps from the square</div>
+          <div>
+            <h3>The light is best between nine and ten.</h3>
+            <p class="map-line">Stamford Quarter, Altrincham · WA14</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand" aria-label="Lugo home">
+          <span class="mark">L</span>
+          <span class="word">Lugo</span>
+        </a>
+        <p class="tag">A neighbourhood café for coffee, bakes, and unhurried mornings. Altrincham, England.</p>
+      </div>
+      <div>
+        <h5>Visit</h5>
+        <ul>
+          <li><a href="#visit">Hours &amp; address</a></li>
+          <li><a href="https://maps.google.com" target="_blank" rel="noopener">Open in Maps</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>The café</h5>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#offerings">Menu</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Follow</h5>
+        <ul>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:hello@lugo.coffee">Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span id="year"></span> Lugo · Altrincham</span>
+      <span>Made with care</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

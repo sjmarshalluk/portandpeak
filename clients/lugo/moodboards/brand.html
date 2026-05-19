@@ -1,0 +1,911 @@
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Cafe Lugo Brand Guidelines</title> <style> :root{ --paper:#fffdf8; --white:#ffffff; --ink:#171514; --muted:#6f6a61; --sage:#7f9688; --sage-dark:#5f7769; --matcha:#a8b85e; --birch:#efdcb8; --copper:#b87945; --surface:#f5f1e8; --line:#ded7ca; --shadow:0 18px 60px rgba(23,21,20,.08); --radius:18px; --max:1180px; --serif: Georgia, "Times New Roman", serif; --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; --display: "Trebuchet MS", Inter, ui-sans-serif, system-ui, sans-serif; }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.55;
+}
+
+img{max-width:100%;display:block}
+a{color:var(--sage-dark);text-decoration-thickness:1px;text-underline-offset:4px}
+.page{width:100%;overflow:hidden}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 36px}
+section{padding:92px 0;border-top:1px solid var(--line)}
+section:first-child{border-top:0}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  line-height:1;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  font-weight:800;
+  color:var(--sage-dark);
+}
+.eyebrow:before{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--matcha);
+  display:inline-block;
+}
+
+h1,h2,h3,h4,p{margin-top:0}
+h1{
+  font-family:var(--display);
+  font-size:clamp(58px,8vw,128px);
+  line-height:.88;
+  letter-spacing:-.07em;
+  margin:20px 0 24px;
+  max-width:900px;
+}
+h2{
+  font-family:var(--display);
+  font-size:clamp(36px,4.4vw,66px);
+  line-height:.95;
+  letter-spacing:-.055em;
+  margin:14px 0 26px;
+  max-width:820px;
+}
+h3{
+  font-size:24px;
+  line-height:1.08;
+  letter-spacing:-.025em;
+  margin-bottom:12px;
+}
+h4{
+  font-size:14px;
+  line-height:1;
+  text-transform:uppercase;
+  letter-spacing:.11em;
+  margin-bottom:12px;
+}
+.lead{
+  font-size:22px;
+  line-height:1.35;
+  letter-spacing:-.02em;
+  max-width:760px;
+  color:#302d29;
+}
+.muted{color:var(--muted)}
+.small{font-size:13px;color:var(--muted)}
+.rule{height:1px;background:var(--line);margin:34px 0}
+
+.grid{display:grid;gap:24px}
+.grid.two{grid-template-columns:1fr 1fr}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.grid.four{grid-template-columns:repeat(4,1fr)}
+.grid.aside{grid-template-columns:340px 1fr;gap:64px}
+
+.card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:26px;
+  box-shadow:0 1px 0 rgba(23,21,20,.02);
+}
+.card.surface{background:var(--surface)}
+.card.sage{background:var(--sage);color:var(--white);border-color:var(--sage)}
+.card.dark{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.card.dark .muted,.card.sage .muted{color:rgba(255,255,255,.72)}
+
+.cover{
+  min-height:860px;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(90deg, rgba(255,253,248,.98) 0%, rgba(255,253,248,.8) 42%, rgba(255,253,248,.2) 100%),
+    url("487486818_122118943574790843_5374696814648542492_n.jpg") center/cover no-repeat;
+  border-bottom:1px solid var(--line);
+}
+.cover-inner{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:80px 36px;
+  width:100%;
+}
+.cover-panel{
+  max-width:760px;
+  background:rgba(255,253,248,.88);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(222,215,202,.85);
+  border-radius:28px;
+  padding:44px;
+  box-shadow:var(--shadow);
+}
+.brand-chip{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:30px 0 0;
+}
+.chip{
+  border:1px solid var(--line);
+  background:var(--white);
+  border-radius:999px;
+  padding:8px 13px;
+  font-size:13px;
+  font-weight:750;
+}
+.preview-strip{
+  display:grid;
+  grid-template-columns:1.2fr .8fr .8fr;
+  gap:14px;
+  margin-top:34px;
+}
+.preview-strip > div{
+  min-height:116px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  overflow:hidden;
+  background:var(--white);
+}
+.preview-logo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--sage)!important;
+  padding:22px;
+}
+.preview-logo img{max-height:86px;width:auto}
+.preview-palette{display:grid;grid-template-columns:repeat(4,1fr)}
+.preview-palette span:nth-child(1){background:var(--ink)}
+.preview-palette span:nth-child(2){background:var(--sage)}
+.preview-palette span:nth-child(3){background:var(--birch)}
+.preview-palette span:nth-child(4){background:var(--matcha)}
+.preview-type{
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.preview-type strong{
+  font-family:var(--display);
+  font-size:34px;
+  line-height:.9;
+  letter-spacing:-.06em;
+}
+
+.logo-box{
+  min-height:270px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--sage);
+  border-radius:var(--radius);
+  padding:38px;
+}
+.logo-box.light{background:var(--surface)}
+.logo-box.dark{background:var(--ink)}
+.logo-box img{max-width:280px}
+.logo-box.small img{max-width:116px}
+
+.swatch{
+  min-height:160px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:18px;
+  overflow:hidden;
+}
+.swatch .hex{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+.swatch.ink{background:var(--ink);color:var(--white)}
+.swatch.sage{background:var(--sage);color:var(--white)}
+.swatch.matcha{background:var(--matcha);color:var(--ink)}
+.swatch.birch{background:var(--birch);color:var(--ink)}
+.swatch.copper{background:var(--copper);color:var(--white)}
+.swatch.paper{background:var(--paper)}
+.swatch.line{background:var(--line)}
+.swatch.surface{background:var(--surface)}
+
+.type-sample{
+  border-top:1px solid var(--line);
+  padding:22px 0;
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:28px;
+  align-items:start;
+}
+.type-sample:last-child{border-bottom:1px solid var(--line)}
+.sample-h1{font-family:var(--display);font-size:66px;line-height:.9;letter-spacing:-.06em}
+.sample-h2{font-family:var(--display);font-size:44px;line-height:1;letter-spacing:-.05em}
+.sample-h3{font-size:25px;line-height:1.1;font-weight:800;letter-spacing:-.025em}
+.sample-body{font-size:17px;max-width:610px}
+.sample-meta{font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--sage-dark)}
+.sample-button{font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:850}
+
+.motif-line{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin:16px 0;
+}
+.motif-line:before,.motif-line:after{
+  content:"";
+  height:1px;
+  background:var(--line);
+  flex:1;
+}
+.motif-dot{width:9px;height:9px;border-radius:50%;background:var(--matcha)}
+.caption{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--muted);
+  border-top:1px solid var(--line);
+  padding-top:10px;
+  margin-top:12px;
+}
+
+.photo-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr .8fr;
+  gap:18px;
+}
+.photo-card{
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:var(--white);
+}
+.photo-card img{width:100%;height:280px;object-fit:cover}
+.photo-card.tall{grid-row:span 2}
+.photo-card.tall img{height:578px}
+.photo-card p{padding:14px 16px 16px;margin:0;font-size:13px;color:var(--muted)}
+
+.button-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:46px;
+  padding:0 20px;
+  border-radius:999px;
+  border:1px solid var(--ink);
+  background:var(--ink);
+  color:var(--white);
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  font-weight:850;
+  text-decoration:none;
+}
+.btn.secondary{background:transparent;color:var(--ink)}
+.btn.sage{background:var(--sage);border-color:var(--sage);color:var(--white)}
+.nav-demo{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:12px 16px 12px 20px;
+  background:var(--white);
+}
+.nav-demo img{width:58px}
+.nav-demo nav{display:flex;gap:22px;font-size:13px;text-transform:uppercase;letter-spacing:.09em;font-weight:800}
+.field{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:13px 14px;
+  background:var(--paper);
+  color:var(--muted);
+  margin-bottom:10px;
+}
+
+.app-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  align-items:start;
+}
+.mock{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.mock-body{padding:22px}
+.mock-hero img{height:210px;width:100%;object-fit:cover}
+.mock-title{
+  font-family:var(--display);
+  font-size:36px;
+  line-height:.92;
+  letter-spacing:-.055em;
+  margin:0 0 12px;
+}
+.business-card{
+  aspect-ratio:1.65/1;
+  background:var(--sage);
+  color:var(--white);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:24px;
+}
+.business-card img{width:112px}
+.poster{
+  background:var(--paper);
+  min-height:420px;
+  display:flex;
+  flex-direction:column;
+}
+.poster-top{
+  background:var(--ink);
+  color:var(--white);
+  padding:24px;
+}
+.poster h3{
+  font-family:var(--display);
+  font-size:54px;
+  line-height:.9;
+  letter-spacing:-.06em;
+  margin:0;
+}
+.social{
+  aspect-ratio:1/1;
+  background:var(--surface);
+  position:relative;
+}
+.social img{height:62%;width:100%;object-fit:cover}
+.social .mock-body{padding:20px}
+.email-head{
+  background:var(--sage);
+  padding:22px;
+  color:var(--white);
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.email-head img{width:72px}
+.review-card{
+  background:var(--ink);
+  color:var(--white);
+  padding:28px;
+  min-height:270px;
+}
+
+.dos{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+.do-list,.dont-list{list-style:none;margin:0;padding:0}
+.do-list li,.dont-list li{
+  padding:13px 0;
+  border-top:1px solid var(--line);
+}
+.do-list li:before{content:"Do: ";font-weight:850;color:var(--sage-dark)}
+.dont-list li:before{content:"Don’t: ";font-weight:850;color:#9b3f2f}
+
+.quick{
+  background:var(--ink);
+  color:var(--white);
+  border-top:0;
+}
+.quick .card{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.14);
+  color:var(--white);
+}
+.quick .muted{color:rgba(255,255,255,.68)}
+.quick .eyebrow{color:var(--birch)}
+.quick .eyebrow:before{background:var(--matcha)}
+
+@media(max-width:900px){
+  .grid.two,.grid.three,.grid.four,.grid.aside,.app-grid,.dos,.photo-grid{grid-template-columns:1fr}
+  .cover-panel{padding:28px}
+  section{padding:64px 0}
+  .wrap{padding:0 22px}
+  .preview-strip{grid-template-columns:1fr}
+  .type-sample{grid-template-columns:1fr;gap:6px}
+  .sample-h1{font-size:48px}
+  .photo-card.tall img,.photo-card img{height:280px}
+  .nav-demo{border-radius:20px;align-items:flex-start;flex-direction:column}
+  .nav-demo nav{flex-wrap:wrap}
+}
+</style> </head> <body> <main class="page">
+  <section class="cover">
+  <div class="cover-inner">
+    <div class="cover-panel">
+      <span class="eyebrow">Brand guidelines</span>
+      <h1>Cafe Lugo</h1>
+      <p class="lead">A warm, neighborly and modern coffee shop brand for Altrincham: relaxed enough for the morning regular, considered enough for good coffee, bakery and simple local hospitality.</p>
+      <div class="brand-chip">
+        <span class="chip">Coffee Shop</span>
+        <span class="chip">Altrincham, UK</span>
+        <span class="chip">Warm</span>
+        <span class="chip">Neighborly</span>
+        <span class="chip">Modern</span>
+      </div>
+      <div class="preview-strip" aria-label="Visual system preview">
+        <div class="preview-logo"><img src="486597280_122116850912790843_8007100076531699156_n.jpg" alt="Cafe Lugo logo"></div>
+        <div class="preview-palette"><span></span><span></span><span></span><span></span></div>
+        <div class="preview-type">
+          <strong>COFFEE<br>BAKERY<br>DESSERTS</strong>
+          <span class="small">Big, clear type with calm local detail.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="essence">
+  <div class="wrap grid aside">
+    <div>
+      <span class="eyebrow">01 Essence</span>
+      <h2>Clear coffee, calm space, familiar faces.</h2>
+    </div>
+    <div class="grid two">
+      <div class="card">
+        <h3>Brand idea</h3>
+        <p>Cafe Lugo should feel like a bright local pause: a clean modern café where coffee, bakery and desserts are presented with care, but never with stiffness.</p>
+      </div>
+      <div class="card">
+        <h3>Personality</h3>
+        <p>Warm, direct, tidy, easygoing and quietly confident. The brand speaks like a good host: helpful, human and unforced.</p>
+      </div>
+      <div class="card">
+        <h3>Audience impression</h3>
+        <p>Customers should read Lugo as a reliable neighborhood café for breakfast coffee, work breaks, casual meetups, lunch plates and a sweet treat after errands.</p>
+      </div>
+      <div class="card">
+        <h3>Avoid becoming</h3>
+        <p>Not a faux-luxury patisserie, not a generic beige café, not an overly edgy coffee brand, and not a busy menu-board identity with too many decorative pieces.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="logo">
+  <div class="wrap">
+    <span class="eyebrow">02 Logo usage</span>
+    <h2>Use the mark as a friendly café seal, not as decoration.</h2>
+    <p class="lead">The provided Lugo logo combines a rounded café seal, latte-art heart and curved wording. It should remain simple, high-contrast and spacious.</p>
+
+    <div class="grid three" style="margin-top:34px">
+      <div class="card">
+        <div class="logo-box"><img src="486597280_122116850912790843_8007100076531699156_n.jpg" alt="Cafe Lugo logo on sage"></div>
+        <div class="caption">Primary use: white mark on Lugo Sage</div>
+      </div>
+      <div class="card">
+        <div class="logo-box light"><img src="486597280_122116850912790843_8007100076531699156_n.jpg" alt="Cafe Lugo logo on pale background"></div>
+        <div class="caption">Light use: for menus, cards and simple print</div>
+      </div>
+      <div class="card">
+        <div class="logo-box dark small"><img src="486597280_122116850912790843_8007100076531699156_n.jpg" alt="Small Cafe Lugo logo"></div>
+        <div class="caption">Small use: social avatar, sticker, receipt footer</div>
+      </div>
+    </div>
+
+    <div class="grid three" style="margin-top:24px">
+      <div class="card">
+        <h3>Clear space</h3>
+        <p>Keep at least the height of the “LUGO” letters around the mark on every side. On busy photos, place the logo inside a plain sage or black panel.</p>
+      </div>
+      <div class="card">
+        <h3>Minimum size</h3>
+        <p>Print: 28mm wide minimum. Digital: 96px wide minimum. Below this, use only the central latte-heart symbol if a simplified asset is prepared.</p>
+      </div>
+      <div class="card">
+        <h3>Do not</h3>
+        <p>Do not recolor the logo randomly, add shadows, stretch it, place it over cluttered food photography, rotate it, or rebuild the curved type.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="color">
+  <div class="wrap">
+    <span class="eyebrow">03 Color palette</span>
+    <h2>Sage from the logo, black from the café tables, birch from the interior.</h2>
+    <div class="grid four">
+      <div class="swatch paper"><strong>Warm White</strong><span class="hex">#FFFDF8</span><span class="small">Primary page and menu background.</span></div>
+      <div class="swatch ink"><strong>Table Black</strong><span class="hex">#171514</span><span class="small">Primary text, buttons, menu type.</span></div>
+      <div class="swatch sage"><strong>Lugo Sage</strong><span class="hex">#7F9688</span><span class="small">Main brand color, logo fields, signage panels.</span></div>
+      <div class="swatch matcha"><strong>Matcha Green</strong><span class="hex">#A8B85E</span><span class="small">Small accents, dots, seasonal notes.</span></div>
+      <div class="swatch birch"><strong>Birch Wood</strong><span class="hex">#EFDCB8</span><span class="small">Printed cards, menu dividers, soft blocks.</span></div>
+      <div class="swatch copper"><strong>Warm Copper</strong><span class="hex">#B87945</span><span class="small">Coffee warmth, pastry highlights, small labels.</span></div>
+      <div class="swatch surface"><strong>Counter Surface</strong><span class="hex">#F5F1E8</span><span class="small">Subtle panels and forms.</span></div>
+      <div class="swatch line"><strong>Soft Line</strong><span class="hex">#DED7CA</span><span class="small">Borders, rules, menu separators.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="type">
+  <div class="wrap grid aside">
+    <div>
+      <span class="eyebrow">04 Typography</span>
+      <h2>Bold when useful. Calm everywhere else.</h2>
+      <p class="muted">The logo is rounded and friendly, while the interiors are clean and architectural. Use a practical sans-serif system with compact, bold headings and highly readable body text.</p>
+    </div>
+    <div>
+      <div class="type-sample">
+        <div class="small">H1 / Hero</div>
+        <div class="sample-h1">Coffee for the way through Altrincham.</div>
+      </div>
+      <div class="type-sample">
+        <div class="small">H2 / Section</div>
+        <div class="sample-h2">Bakery, coffee, desserts and a seat by the window.</div>
+      </div>
+      <div class="type-sample">
+        <div class="small">H3 / Card</div>
+        <div class="sample-h3">Morning coffee. Fresh pastry. Easy lunch.</div>
+      </div>
+      <div class="type-sample">
+        <div class="small">Body</div>
+        <div class="sample-body">Use clear, plain body copy. Keep paragraphs short. Let the menu, opening times and location details be easy to scan before adding personality.</div>
+      </div>
+      <div class="type-sample">
+        <div class="small">Meta</div>
+        <div class="sample-meta">Open today · Altrincham · Coffee & bakery</div>
+      </div>
+      <div class="type-sample">
+        <div class="small">Button</div>
+        <div class="sample-button">View the menu</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="layout">
+  <div class="wrap">
+    <span class="eyebrow">05 Layout & spacing</span>
+    <h2>Let the café breathe.</h2>
+    <div class="grid three">
+      <div class="card">
+        <h3>Margins</h3>
+        <p>Desktop pages should use generous left and right margins: 32–48px minimum, with a content container around 1180px wide.</p>
+      </div>
+      <div class="card">
+        <h3>Spacing</h3>
+        <p>Use 80–100px between major website sections. Use 24px between related cards or menu blocks. Avoid cramped promotional layouts.</p>
+      </div>
+      <div class="card">
+        <h3>Grid</h3>
+        <p>Use a simple 12-column web grid or practical 2/3-column layouts. Align text and images cleanly; do not scatter elements diagonally.</p>
+      </div>
+      <div class="card">
+        <h3>Content width</h3>
+        <p>Keep long text to 620–760px. Menu items can be narrower. Full-width imagery should be reserved for interiors or atmosphere.</p>
+      </div>
+      <div class="card">
+        <h3>Alignment</h3>
+        <p>Default to left alignment. Center alignment is acceptable for the logo, small cards, and event notices, but not for long copy.</p>
+      </div>
+      <div class="card">
+        <h3>Compact blocks</h3>
+        <p>Use compact blocks for opening hours, address, dietary notes, Wi-Fi, takeaway, and short menu highlights.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="graphic">
+  <div class="wrap grid aside">
+    <div>
+      <span class="eyebrow">06 Graphic language</span>
+      <h2>Simple marks from café materials.</h2>
+    </div>
+    <div class="grid two">
+      <div class="card">
+        <h3>Line rules</h3>
+        <p>Use fine horizontal rules to separate menu sections, opening hours and small information. This echoes the menu board and keeps the system tidy.</p>
+        <div class="motif-line"><span class="motif-dot"></span></div>
+      </div>
+      <div class="card">
+        <h3>Rounded seal</h3>
+        <p>The logo’s circular seal can inspire simple round labels: “Fresh today”, “Takeaway”, “New cake”. Use sparingly, never as clutter.</p>
+      </div>
+      <div class="card">
+        <h3>Framing</h3>
+        <p>Use thin black or soft-line borders around photos and cards. Corners can be softly rounded, but keep the overall feel crisp.</p>
+      </div>
+      <div class="card">
+        <h3>Captions</h3>
+        <p>Captions should be small, uppercase, and practical: product name, location cue, or service note. Avoid poetic captions.</p>
+        <div class="caption">Example caption · espresso bar detail</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="photo">
+  <div class="wrap">
+    <span class="eyebrow">07 Photography</span>
+    <h2>Real café light, real food, real space.</h2>
+    <p class="lead">The provided images point to a clean, warm interior with sage walls, birch wood, black tables, greenery, coffee, pastries, salad and desserts. Keep that honesty. Avoid glossy stock-style café shots.</p>
+
+    <div class="photo-grid" style="margin-top:34px">
+      <div class="photo-card tall">
+        <img src="487505046_122118943646790843_6171120188053150695_n.jpg" alt="Cafe seating and interior">
+        <p>Environment: show the bright interior, windows, plants and seating so Lugo feels local and visitable.</p>
+      </div>
+      <div class="photo-card">
+        <img src="540327767_122152750010790843_5871362199647316872_n.jpg" alt="Coffee and pastry table">
+        <p>Product groupings: coffee, pastry and cake on black tables for contrast.</p>
+      </div>
+      <div class="photo-card">
+        <img src="505165994_122136997934790843_748070530417958450_n.jpg" alt="Dessert plate">
+        <p>Desserts: simple plating, enough negative space, natural shadows.</p>
+      </div>
+      <div class="photo-card">
+        <img src="585128202_17878570044427380_5595206126847564309_n.jpg" alt="Fresh salad">
+        <p>Lunch: fresh color, close detail, clean white tableware.</p>
+      </div>
+      <div class="photo-card">
+        <img src="487486818_122118943574790843_5374696814648542492_n.jpg" alt="Cafe counter">
+        <p>Service: counter, coffee machine and menu board should feel orderly and welcoming.</p>
+      </div>
+    </div>
+
+    <div class="grid three" style="margin-top:24px">
+      <div class="card">
+        <h3>Use</h3>
+        <p>Daylight, warm practical lighting, clean surfaces, real portions, hands in frame when natural, and wide shots that show where people sit.</p>
+      </div>
+      <div class="card">
+        <h3>Crop</h3>
+        <p>Crop with confidence: full-bleed interiors for atmosphere, tight product crops for social posts, square crops for menu highlights.</p>
+      </div>
+      <div class="card">
+        <h3>Avoid</h3>
+        <p>Over-saturated filters, fake steam, cluttered tables, extreme close-ups of foam, generic smiling stock models and heavy beige overlays.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ui">
+  <div class="wrap">
+    <span class="eyebrow">08 UI components</span>
+    <h2>Low-chrome web pieces that feel like the café.</h2>
+
+    <div class="grid two">
+      <div class="card">
+        <h3>Navigation</h3>
+        <div class="nav-demo">
+          <img src="486597280_122116850912790843_8007100076531699156_n.jpg" alt="Cafe Lugo logo">
+          <nav><span>Menu</span><span>Visit</span><span>About</span><span>Order</span></nav>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Buttons</h3>
+        <div class="button-row">
+          <a class="btn" href="#">View menu</a>
+          <a class="btn secondary" href="#">Find us</a>
+          <a class="btn sage" href="#">Order ahead</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Menu list</h3>
+        <div class="rule"></div>
+        <p><strong>Flat White</strong><span style="float:right">£—</span><br><span class="small">Smooth espresso, steamed milk.</span></p>
+        <p><strong>Matcha Latte</strong><span style="float:right">£—</span><br><span class="small">Available iced or hot.</span></p>
+        <p><strong>Fresh Cake Slice</strong><span style="float:right">£—</span><br><span class="small">Ask at the counter for today’s choice.</span></p>
+      </div>
+      <div class="card">
+        <h3>Contact block</h3>
+        <p class="sample-meta">Visit us</p>
+        <p><strong>Cafe Lugo</strong><br>Altrincham, UK<br><span class="muted">Opening times and exact address to be added.</span></p>
+        <a class="btn secondary" href="#">Get directions</a>
+      </div>
+      <div class="card">
+        <h3>Review treatment</h3>
+        <p style="font-size:23px;line-height:1.25;letter-spacing:-.02em">“A calm local spot for coffee, cake and a proper sit-down.”</p>
+        <p class="small">Example format only — replace with real customer review.</p>
+      </div>
+      <div class="card">
+        <h3>Form fields</h3>
+        <div class="field">Name</div>
+        <div class="field">Email address</div>
+        <div class="field">Message</div>
+        <a class="btn" href="#">Send message</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="voice">
+  <div class="wrap grid aside">
+    <div>
+      <span class="eyebrow">09 Voice & copy</span>
+      <h2>Plain, warm and useful.</h2>
+    </div>
+    <div>
+      <div class="grid two">
+        <div class="card">
+          <h3>Voice attributes</h3>
+          <p>Local, calm, clear, welcoming and specific. Write like a café owner who knows the regulars and respects their time.</p>
+        </div>
+        <div class="card">
+          <h3>Sentence style</h3>
+          <p>Short sentences. Concrete details. Put useful information first: what is served, when, where and how to order.</p>
+        </div>
+      </div>
+
+      <div class="rule"></div>
+
+      <div class="grid two">
+        <div>
+          <h3>Use phrases like</h3>
+          <ul>
+            <li>Good coffee, fresh bakery, easy seats.</li>
+            <li>Pop in before the market.</li>
+            <li>Ask what’s fresh at the counter.</li>
+            <li>Hot or iced, to stay or take away.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Avoid phrases like</h3>
+          <ul>
+            <li>Experience the difference.</li>
+            <li>Crafted with passion.</li>
+            <li>Premium coffee journey.</li>
+            <li>Where quality meets comfort.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid two" style="margin-top:28px">
+        <div class="card surface">
+          <h3>Sample headlines</h3>
+          <p>Breakfast coffee, without the rush.</p>
+          <p>Fresh cake at the counter today.</p>
+          <p>Your Altrincham stop for coffee, bakery and lunch.</p>
+          <p>A quiet table, a good cup, a little something sweet.</p>
+        </div>
+        <div class="card surface">
+          <h3>CTA labels</h3>
+          <p>View the menu</p>
+          <p>Find us in Altrincham</p>
+          <p>See today’s cakes</p>
+          <p>Order for takeaway</p>
+          <p>Plan your visit</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="applications">
+  <div class="wrap">
+    <span class="eyebrow">10 Brand applications</span>
+    <h2>Compact examples for real local marketing.</h2>
+
+    <div class="app-grid">
+      <div class="mock">
+        <div class="mock-hero"><img src="488182695_122118943700790843_3628143699173608049_n.jpg" alt="Cafe Lugo interior"></div>
+        <div class="mock-body">
+          <p class="sample-meta">Website hero</p>
+          <p class="mock-title">Coffee, bakery and a calm seat in Altrincham.</p>
+          <a class="btn" href="#">View menu</a>
+        </div>
+      </div>
+
+      <div class="mock business-card">
+        <img src="486597280_122116850912790843_8007100076531699156_n.jpg" alt="Cafe Lugo logo">
+        <div>
+          <p style="margin:0 0 8px;font-weight:850">Cafe Lugo</p>
+          <p style="margin:0;color:rgba(255,255,255,.8)">Bakery · Coffee · Desserts<br>Altrincham, UK</p>
+        </div>
+      </div>
+
+      <div class="mock poster">
+        <div class="poster-top">
+          <p class="sample-meta" style="color:var(--birch)">Noticeboard poster</p>
+          <h3>Fresh cake today.</h3>
+        </div>
+        <div class="mock-body">
+          <p>Ask at the counter for today’s slices. Coffee to stay or take away.</p>
+          <div class="motif-line"><span class="motif-dot"></span></div>
+          <p class="small">Cafe Lugo · Altrincham</p>
+        </div>
+      </div>
+
+      <div class="mock social">
+        <img src="536106106_122150595974790843_8509739698126024699_n.jpg" alt="Coffee and pastry">
+        <div class="mock-body">
+          <p class="sample-meta">Social post</p>
+          <p class="mock-title">Morning sorted.</p>
+          <p class="small">Coffee, pastry and a seat when you need one.</p>
+        </div>
+      </div>
+
+      <div class="mock">
+        <div class="email-head">
+          <img src="486597280_122116850912790843_8007100076531699156_n.jpg" alt="Cafe Lugo logo">
+          <div>
+            <strong>Weekend at Lugo</strong><br>
+            <span style="color:rgba(255,255,255,.75)">Example email header</span>
+          </div>
+        </div>
+        <div class="mock-body">
+          <p class="mock-title">New cakes, same good coffee.</p>
+          <p>Short newsletter copy should feel like a note from the café, not a sales campaign.</p>
+        </div>
+      </div>
+
+      <div class="mock review-card">
+        <p class="sample-meta" style="color:var(--birch)">Review card</p>
+        <p style="font-size:30px;line-height:1.1;letter-spacing:-.04em">“A relaxed local café with good coffee and bright, calm seating.”</p>
+        <p class="small" style="color:rgba(255,255,255,.65)">Example format only — use real customer wording.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="wrap">
+    <span class="eyebrow">11 Do / Don’t</span>
+    <h2>Keep it warm, but keep it disciplined.</h2>
+    <div class="dos">
+      <div class="card">
+        <h3>Do</h3>
+        <ul class="do-list">
+          <li>Use the logo in white on sage, black or calm pale fields.</li>
+          <li>Let white space and clear type do most of the work.</li>
+          <li>Use real interior, coffee, bakery and lunch photography.</li>
+          <li>Keep menu layouts aligned, separated by fine rules.</li>
+          <li>Write with plain local specificity.</li>
+          <li>Use sage as the main brand color, not every color at once.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Don’t</h3>
+        <ul class="dont-list">
+          <li>Place the seal over busy food photos without a clear panel.</li>
+          <li>Use cream-on-cream layouts that lose contrast.</li>
+          <li>Add generic café icons, random blobs or ornamental patterns.</li>
+          <li>Make the brand feel like a luxury hotel or chain coffee shop.</li>
+          <li>Use vague slogans or over-polished marketing language.</li>
+          <li>Over-filter food shots until they stop looking real.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quick" id="quick-reference">
+  <div class="wrap">
+    <span class="eyebrow">12 Quick reference</span>
+    <h2>The Lugo cheat sheet.</h2>
+    <div class="grid three">
+      <div class="card">
+        <h3>Core colors</h3>
+        <p><strong>Warm White</strong> #FFFDF8<br><strong>Table Black</strong> #171514<br><strong>Lugo Sage</strong> #7F9688<br><strong>Birch Wood</strong> #EFDCB8<br><strong>Matcha Green</strong> #A8B85E</p>
+      </div>
+      <div class="card">
+        <h3>Type hierarchy</h3>
+        <p>Bold compact sans-serif headings. Clean system sans body. Uppercase micro-labels for opening times, location and menu sections.</p>
+      </div>
+      <div class="card">
+        <h3>Spacing rule</h3>
+        <p>Use generous margins, 80–100px section spacing, 24px card gaps and thin rules to separate practical information.</p>
+      </div>
+      <div class="card">
+        <h3>Button style</h3>
+        <p>Rounded pill buttons, uppercase labels, black primary, outline secondary, sage for order or visit CTAs.</p>
+      </div>
+      <div class="card">
+        <h3>Image style</h3>
+        <p>Real café light, black table contrast, sage and birch interiors, honest food, calm crops, no heavy filters.</p>
+      </div>
+      <div class="card">
+        <h3>Most important rule</h3>
+        <p>Make every touchpoint feel like a clear local invitation: easy to read, easy to visit, and recognisably Lugo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main></body> </html>

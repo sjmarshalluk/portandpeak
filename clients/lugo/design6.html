@@ -1,0 +1,686 @@
+<!doctype html> <html lang="en"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Lugo Bakery Coffee Desserts</title> <style> :root{ --black:#080808; --white:#fffdf8; --cream:#f5efe1; --blush:#f3dede; --sage:#849b8e; --sage-light:#d8e3d6; --teal:#2f6f64; --wood:#d9b46f; }
+
+*{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+  background:var(--black);
+}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  color:var(--black);
+  background:var(--white);
+  text-transform:none;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.page{
+  overflow:hidden;
+  background:var(--white);
+}
+
+.nav{
+  position:absolute;
+  z-index:20;
+  top:0;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 28px;
+  color:var(--white);
+  mix-blend-mode:difference;
+  font-size:12px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+
+.nav__brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.nav__mark{
+  width:34px;
+  height:34px;
+  border:2px solid currentColor;
+  display:grid;
+  place-items:center;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:-.03em;
+  border-radius:50%;
+}
+
+.nav__links{
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+.nav__cta{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.nav__cta::before{
+  content:"";
+  width:9px;
+  height:9px;
+  background:var(--teal);
+  display:block;
+}
+
+.hero{
+  position:relative;
+  min-height:100vh;
+  background:var(--black);
+  display:flex;
+  align-items:flex-end;
+  padding:0 2vw 2vw;
+  overflow:hidden;
+  border-bottom:14px solid var(--black);
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.02) 45%, rgba(0,0,0,.35)),
+    url("/mnt/data/540327767_122152750010790843_5871362199647316872_n.jpg") center/cover no-repeat;
+  transform:scale(1.03);
+  filter:contrast(1.06) saturate(1.05);
+}
+
+.hero__stamp{
+  position:absolute;
+  z-index:2;
+  top:96px;
+  right:32px;
+  width:132px;
+  height:132px;
+  border:2px solid var(--white);
+  border-radius:50%;
+  color:var(--white);
+  display:grid;
+  place-items:center;
+  text-align:center;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:12px;
+  line-height:1.25;
+  transform:rotate(7deg);
+}
+
+.hero__word{
+  position:relative;
+  z-index:3;
+  margin:0;
+  width:100%;
+  color:var(--white);
+  font-family:"Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+  font-size:clamp(92px, 24vw, 430px);
+  line-height:.72;
+  font-weight:900;
+  font-style:italic;
+  text-transform:uppercase;
+  letter-spacing:-.095em;
+  transform:skewX(-7deg);
+  white-space:nowrap;
+  text-shadow:0 4px 0 rgba(0,0,0,.15);
+}
+
+.intro{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  min-height:480px;
+  background:var(--white);
+  border-bottom:14px solid var(--black);
+}
+
+.intro__left{
+  padding:70px 6vw 58px;
+  background:var(--sage-light);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:480px;
+}
+
+.eyebrow{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin:0 0 18px;
+}
+
+.intro h2,
+.invite h2,
+.menu h2{
+  margin:0;
+  font-family:"Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+  font-size:clamp(64px, 12vw, 210px);
+  line-height:.78;
+  letter-spacing:-.075em;
+  text-transform:uppercase;
+  font-style:italic;
+  font-weight:900;
+}
+
+.intro__copy{
+  max-width:390px;
+  font-size:21px;
+  line-height:1.05;
+  font-weight:900;
+  letter-spacing:-.035em;
+  text-transform:uppercase;
+  margin:34px 0 0;
+}
+
+.intro__right{
+  padding:70px 6vw;
+  display:flex;
+  align-items:flex-end;
+  background:var(--white);
+}
+
+.intro__right p{
+  max-width:420px;
+  margin:0;
+  font-size:15px;
+  line-height:1.35;
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+
+.split{
+  display:grid;
+  grid-template-columns:58% 42%;
+  min-height:760px;
+  border-bottom:14px solid var(--black);
+  background:var(--blush);
+}
+
+.split__image{
+  min-height:760px;
+  background:url("/mnt/data/585128202_17878570044427380_5595206126847564309_n.jpg") center/cover no-repeat;
+  filter:contrast(1.08) saturate(1.04);
+}
+
+.split__panel{
+  padding:44px 42px;
+  background:var(--blush);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.split__panel h3{
+  margin:0;
+  font-family:"Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+  font-size:clamp(58px, 8vw, 145px);
+  line-height:.78;
+  letter-spacing:-.075em;
+  text-transform:uppercase;
+  font-style:italic;
+  font-weight:900;
+}
+
+.split__panel p{
+  max-width:330px;
+  margin:28px 0 0;
+  font-size:16px;
+  line-height:1.22;
+  font-weight:900;
+  letter-spacing:-.025em;
+}
+
+.split__mini{
+  width:100%;
+  aspect-ratio:1.3/1;
+  background:url("/mnt/data/536106106_122150595974790843_8509739698126024699_n.jpg") center/cover no-repeat;
+  border-top:10px solid var(--black);
+}
+
+.gridline{
+  display:grid;
+  grid-template-columns:34% 33% 33%;
+  background:var(--black);
+  gap:10px;
+  padding:10px;
+  border-bottom:14px solid var(--black);
+}
+
+.gridline article{
+  min-height:410px;
+  background:var(--white);
+  position:relative;
+  overflow:hidden;
+}
+
+.gridline article:nth-child(1){
+  background:url("/mnt/data/505165994_122136997934790843_748070530417958450_n.jpg") center/cover no-repeat;
+}
+
+.gridline article:nth-child(2){
+  background:var(--sage);
+  color:var(--white);
+  padding:26px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.gridline article:nth-child(3){
+  background:url("/mnt/data/487486818_122118943574790843_5374696814648542492_n.jpg") center/cover no-repeat;
+}
+
+.gridline h4{
+  margin:0;
+  font-family:"Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+  font-size:clamp(54px, 7vw, 120px);
+  line-height:.78;
+  letter-spacing:-.07em;
+  text-transform:uppercase;
+  font-style:italic;
+  font-weight:900;
+}
+
+.gridline p{
+  margin:0;
+  max-width:260px;
+  font-size:14px;
+  line-height:1.25;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:-.015em;
+}
+
+.invite{
+  position:relative;
+  min-height:820px;
+  background:var(--white);
+  border-bottom:14px solid var(--black);
+  display:grid;
+  grid-template-columns:44% 56%;
+  overflow:hidden;
+}
+
+.invite__text{
+  position:relative;
+  z-index:2;
+  padding:64px 3vw 64px 5vw;
+  background:var(--white);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.invite__text h2{
+  font-size:clamp(74px, 14vw, 250px);
+  max-width:680px;
+}
+
+.invite__text p{
+  margin:32px 0 0;
+  max-width:340px;
+  font-size:16px;
+  line-height:1.25;
+  font-weight:900;
+  letter-spacing:-.025em;
+  text-transform:uppercase;
+}
+
+.invite__image{
+  position:relative;
+  min-height:820px;
+  background:url("/mnt/data/487505046_122118943646790843_6171120188053150695_n.jpg") center/cover no-repeat;
+  filter:contrast(1.08) saturate(1.02);
+}
+
+.invite__image::after{
+  content:"BAKERY COFFEE DESSERTS";
+  position:absolute;
+  left:-33vw;
+  bottom:38px;
+  font-family:"Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+  font-size:clamp(58px, 10vw, 190px);
+  line-height:.8;
+  font-weight:900;
+  font-style:italic;
+  letter-spacing:-.075em;
+  color:var(--blush);
+  text-transform:uppercase;
+  white-space:nowrap;
+  mix-blend-mode:multiply;
+}
+
+.menu{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-bottom:14px solid var(--black);
+  background:var(--blush);
+}
+
+.menu__photo{
+  min-height:650px;
+  background:url("/mnt/data/488182695_122118943700790843_3628143699173608049_n.jpg") center/cover no-repeat;
+}
+
+.menu__panel{
+  padding:54px 5vw;
+  background:var(--blush);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:650px;
+}
+
+.menu__panel h2{
+  font-size:clamp(72px, 12vw, 210px);
+}
+
+.menu__list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px 28px;
+  margin-top:38px;
+  max-width:520px;
+}
+
+.menu__item{
+  border-top:3px solid var(--black);
+  padding-top:10px;
+  font-size:14px;
+  line-height:1.05;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:-.02em;
+}
+
+.final{
+  display:grid;
+  grid-template-columns:42% 58%;
+  min-height:520px;
+  background:var(--sage-light);
+}
+
+.final__logo{
+  background:var(--sage);
+  color:var(--white);
+  display:grid;
+  place-items:center;
+  padding:40px;
+}
+
+.logo-lockup{
+  width:min(370px, 80%);
+  aspect-ratio:1/1;
+  border:3px solid currentColor;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  line-height:1.1;
+}
+
+.logo-lockup strong{
+  display:block;
+  font-family:"Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+  font-size:64px;
+  line-height:.78;
+  letter-spacing:.04em;
+  margin-bottom:18px;
+}
+
+.logo-lockup span{
+  display:block;
+  font-size:13px;
+}
+
+.final__panel{
+  padding:70px 6vw;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.final__panel h3{
+  margin:0;
+  font-family:"Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+  font-size:clamp(62px, 10vw, 170px);
+  line-height:.82;
+  letter-spacing:-.075em;
+  text-transform:uppercase;
+  font-style:italic;
+  font-weight:900;
+  max-width:790px;
+}
+
+.final__copy{
+  max-width:420px;
+  margin-top:38px;
+  font-size:16px;
+  line-height:1.3;
+  font-weight:900;
+  letter-spacing:-.02em;
+  text-transform:uppercase;
+}
+
+.link{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  width:max-content;
+  margin-top:34px;
+  font-size:13px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border-bottom:3px solid var(--black);
+  padding-bottom:8px;
+}
+
+.link::before{
+  content:"";
+  width:11px;
+  height:11px;
+  background:var(--teal);
+  display:block;
+}
+
+@media (max-width:900px){
+  .nav{
+    padding:18px;
+  }
+
+  .nav__links{
+    gap:15px;
+  }
+
+  .nav__links a:nth-child(2),
+  .nav__links a:nth-child(3){
+    display:none;
+  }
+
+  .hero{
+    min-height:86vh;
+  }
+
+  .hero__word{
+    font-size:28vw;
+  }
+
+  .hero__stamp{
+    top:82px;
+    right:18px;
+    width:104px;
+    height:104px;
+    font-size:10px;
+  }
+
+  .intro,
+  .split,
+  .invite,
+  .menu,
+  .final{
+    grid-template-columns:1fr;
+  }
+
+  .intro__left,
+  .intro__right,
+  .split__panel,
+  .invite__text,
+  .menu__panel,
+  .final__panel{
+    padding:42px 24px;
+    min-height:auto;
+  }
+
+  .split__image,
+  .invite__image,
+  .menu__photo{
+    min-height:520px;
+  }
+
+  .gridline{
+    grid-template-columns:1fr;
+  }
+
+  .gridline article{
+    min-height:360px;
+  }
+
+  .invite__image::after{
+    left:20px;
+    bottom:24px;
+    white-space:normal;
+  }
+
+  .final__logo{
+    min-height:420px;
+  }
+}
+
+</style> </head> <body> <main class="page"> <nav class="nav" aria-label="Primary navigation"> <a class="nav__brand" href="#"> <span class="nav__mark">LU</span> <span>Lugo</span> </a> <div class="nav__links"> <a href="#menu">Menu</a> <a href="#space">Space</a> <a href="#story">Story</a> <a class="nav__cta" href="#visit">Visit</a> </div> </nav>
+
+  <section class="hero" aria-label="Lugo hero">
+  <div class="hero__stamp">Bakery<br>Coffee<br>Desserts</div>
+  <h1 class="hero__word">Lugo</h1>
+</section>
+
+<section class="intro" id="story">
+  <div class="intro__left">
+    <div>
+      <p class="eyebrow">Bakery · Coffee · Desserts</p>
+      <h2>Soft color.<br>Hard coffee.</h2>
+    </div>
+    <p class="intro__copy">
+      Lugo is a clean, loud little food stop built around espresso, pastry, cake, matcha, lunch plates, and the kind of table chaos that makes a place feel alive.
+    </p>
+  </div>
+  <div class="intro__right">
+    <p>
+      Sage green cards, black tables, pale timber, warm lights, exposed metal, fresh plants, and a menu that moves from morning caffeine to afternoon dessert. No velvet rope. No polished luxury. Just bakery energy with a graphic edge.
+    </p>
+  </div>
+</section>
+
+<section class="split" id="space">
+  <div class="split__image" aria-label="Fresh salad close-up"></div>
+  <div class="split__panel">
+    <div>
+      <p class="eyebrow">Fresh / Bright / Fast</p>
+      <h3>Food that hits the table loud.</h3>
+      <p>
+        Flash-lit greens, sharp fruit, white plates, black surfaces, and crops that feel pulled straight from the counter.
+      </p>
+    </div>
+    <div class="split__mini" aria-label="Coffee and pastry table"></div>
+  </div>
+</section>
+
+<section class="gridline" aria-label="Lugo details">
+  <article aria-label="Interior counter"></article>
+  <article>
+    <h4>Come early. Stay messy.</h4>
+    <p>
+      Coffee, bakery, desserts, soft drinks, matcha, sandwiches, salads, and quiet corners that still feel urban.
+    </p>
+  </article>
+  <article aria-label="Cafe seating"></article>
+</section>
+
+<section class="invite">
+  <div class="invite__text">
+    <div>
+      <p class="eyebrow">From espresso to cake</p>
+      <h2>Pull up for the good table.</h2>
+      <p>
+        Croissants, cappuccino foam, berry cheesecake, bright matcha, everyday lunch, and a loyalty card worth keeping in your pocket.
+      </p>
+    </div>
+  </div>
+  <div class="invite__image" aria-label="Cheesecake and dessert spread"></div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="menu__photo" aria-label="Lugo cafe interior"></div>
+  <div class="menu__panel">
+    <div>
+      <p class="eyebrow">Menu rhythm</p>
+      <h2>Coffee first. Dessert after.</h2>
+      <div class="menu__list">
+        <div class="menu__item">Americano</div>
+        <div class="menu__item">Flat white</div>
+        <div class="menu__item">Cappuccino</div>
+        <div class="menu__item">Latte / matcha latte</div>
+        <div class="menu__item">Filter coffee</div>
+        <div class="menu__item">Fresh juice</div>
+        <div class="menu__item">Bakery</div>
+        <div class="menu__item">Desserts</div>
+      </div>
+    </div>
+    <a class="link" href="#visit">See what is fresh today</a>
+  </div>
+</section>
+
+<section class="final" id="visit">
+  <div class="final__logo">
+    <div class="logo-lockup" aria-label="Lugo logo">
+      <div>
+        <strong>Lugo</strong>
+        <span>Bakery · Coffee · Desserts</span>
+      </div>
+    </div>
+  </div>
+  <div class="final__panel">
+    <div>
+      <p class="eyebrow">Loyalty tastes better</p>
+      <h3>Bring the card. Bring your people.</h3>
+      <p class="final__copy">
+        A casual, graphic cafe space for coffee runs, pastry breaks, lunch plates, and dessert decisions that do not need to be overthought.
+      </p>
+    </div>
+    <a class="link" href="#">Plan a visit</a>
+  </div>
+</section>
+</main> </body> </html>

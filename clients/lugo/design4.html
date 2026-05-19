@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lugo — Coffee, breakfast, Altrincham</title>
+<meta name="description" content="Lugo is a neighbourhood coffee shop in Altrincham. Proper coffee, fresh bakes, and unhurried mornings." />
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:         #fbfaf7;
+    --white:      #ffffff;
+    --ink:        #1c1a17;
+    --ink-soft:   #69645d;
+    --soft:       #f2f0ea;
+    --line:       #ded9cf;
+    --sage:       #81978b;
+    --sage-dark:  #586f64;
+    --coffee:     #9b5f25;
+    --black:      #11110f;
+
+    --font:       'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono:       'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+
+    --max:        1280px;
+    --gutter:     clamp(20px, 4vw, 56px);
+    --rule:       1px solid var(--line);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background: var(--bg); }
+  body {
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; background: none; border: 0; color: inherit; }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  /* Type system ---------------------------------------------------- */
+  .display {
+    font-family: var(--font);
+    font-weight: 760;
+    font-size: clamp(2.4rem, 5.6vw, 4.6rem);
+    line-height: 0.96;
+    letter-spacing: -0.055em;
+  }
+  h2.section-title {
+    font-family: var(--font);
+    font-weight: 690;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+  }
+  h3.h3 {
+    font-family: var(--font);
+    font-weight: 650;
+    font-size: 1.25rem;
+    line-height: 1.22;
+    letter-spacing: -0.028em;
+  }
+  .label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .label.sage { color: var(--sage-dark); }
+  .small { font-size: 0.86rem; color: var(--ink-soft); }
+  .mono { font-family: var(--mono); }
+
+  /* Navigation — menu-board style ---------------------------------- */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background: var(--bg);
+    border-bottom: 2px solid var(--ink);
+  }
+  .nav {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding: 18px 0;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 760;
+    letter-spacing: -0.01em;
+    font-size: 1.1rem;
+  }
+  .brand-mark {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--sage);
+    color: var(--white);
+    display: grid; place-items: center;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    justify-self: center;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+  }
+  .nav-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+  }
+  .nav-meta .dot {
+    width: 7px; height: 7px;
+    background: var(--sage);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 7px;
+    vertical-align: middle;
+  }
+  .menu-toggle { display: none; padding: 8px; }
+  @media (max-width: 820px) {
+    .nav { grid-template-columns: auto 1fr auto; gap: 12px; }
+    .nav-links { display: none; }
+    .nav-meta { display: none; }
+    .menu-toggle { display: block; }
+    .nav-links.open {
+      display: flex;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      background: var(--bg);
+      padding: 18px var(--gutter) 24px;
+      border-bottom: var(--rule);
+    }
+  }
+
+  /* Hero ----------------------------------------------------------- */
+  .hero {
+    border-bottom: 2px solid var(--ink);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.02fr 0.98fr;
+    min-height: 78vh;
+  }
+  @media (max-width: 920px) {
+    .hero-grid { grid-template-columns: 1fr; min-height: auto; }
+  }
+  .hero-copy {
+    padding: 60px var(--gutter) 60px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 56px;
+  }
+  @media (max-width: 920px) {
+    .hero-copy { padding: 48px 0 56px; }
+  }
+  .hero-kicker {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-kicker .rule {
+    width: 56px; height: 2px;
+    background: var(--ink);
+  }
+  .hero-foot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    border-top: var(--rule);
+    padding-top: 22px;
+    max-width: 520px;
+  }
+  .hero-foot strong {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 650;
+    font-size: 0.95rem;
+  }
+  .hero-foot span { font-size: 0.86rem; color: var(--ink-soft); }
+  .hero-image {
+    position: relative;
+    background: var(--soft);
+    border-left: 2px solid var(--ink);
+    overflow: hidden;
+    min-height: 480px;
+  }
+  @media (max-width: 920px) {
+    .hero-image { border-left: 0; border-top: 2px solid var(--ink); min-height: 60vw; }
+  }
+  .hero-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .image-caption {
+    position: absolute;
+    left: 18px; bottom: 18px;
+    background: rgba(255,255,255,0.88);
+    padding: 9px 12px;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  /* Buttons -------------------------------------------------------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 22px;
+    border: 1.5px solid var(--ink);
+    font-weight: 640;
+    font-size: 0.92rem;
+    letter-spacing: -0.005em;
+    background: transparent;
+    color: var(--ink);
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .btn:hover { background: var(--ink); color: var(--white); }
+  .btn.primary { background: var(--black); color: var(--white); }
+  .btn.primary:hover { background: var(--sage-dark); border-color: var(--sage-dark); }
+  .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 650;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+
+  /* Counter strip — like a menu board summary ---------------------- */
+  .counter {
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    background: var(--white);
+  }
+  .counter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+  }
+  @media (max-width: 820px) { .counter-grid { grid-template-columns: 1fr 1fr; } }
+  .counter-cell {
+    background: var(--white);
+    padding: 30px var(--gutter);
+  }
+  .counter-cell .label { display: block; margin-bottom: 10px; }
+  .counter-cell strong {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 650;
+    letter-spacing: -0.022em;
+    line-height: 1.2;
+  }
+  .counter-cell span { display: block; color: var(--ink-soft); font-size: 0.86rem; margin-top: 4px; }
+
+  /* Section base --------------------------------------------------- */
+  section.block {
+    padding: clamp(72px, 9vw, 112px) 0;
+  }
+  .section-head {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 56px;
+    margin-bottom: 44px;
+    align-items: start;
+  }
+  @media (max-width: 820px) {
+    .section-head { grid-template-columns: 1fr; gap: 18px; }
+  }
+  .section-head .label { padding-top: 6px; }
+  .section-head .section-title { max-width: 720px; }
+  .section-head .section-note {
+    color: var(--ink-soft);
+    max-width: 680px;
+    margin-top: 14px;
+  }
+
+  /* About — split with portrait ------------------------------------ */
+  .about {
+    background: var(--bg);
+  }
+  .about-body {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 56px;
+    align-items: end;
+  }
+  @media (max-width: 820px) {
+    .about-body { grid-template-columns: 1fr; gap: 32px; }
+  }
+  .portrait {
+    aspect-ratio: 4 / 5;
+    background: var(--soft);
+    overflow: hidden;
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .about-copy { border-top: 2px solid var(--ink); padding-top: 28px; }
+  .about-copy h2 {
+    font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+    font-weight: 740;
+    margin-bottom: 24px;
+    max-width: 580px;
+  }
+  .about-copy p { color: var(--ink-soft); max-width: 620px; }
+  .about-copy p + p { margin-top: 1em; }
+  .values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    margin-top: 36px;
+    border: var(--rule);
+  }
+  @media (max-width: 820px) { .values { grid-template-columns: 1fr; } }
+  .values div { background: var(--bg); padding: 22px; }
+  .values strong { display: block; font-size: 0.92rem; font-weight: 650; }
+  .values span { display: block; margin-top: 8px; color: var(--ink-soft); font-size: 0.86rem; }
+
+  /* Menu — café signage rows --------------------------------------- */
+  .menu-section { background: var(--white); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+  .menu-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .menu-tab {
+    padding: 8px 14px;
+    border: var(--rule);
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    background: var(--bg);
+  }
+  .menu-tab.is-active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+  .menu-list {
+    border-top: 2px solid var(--ink);
+  }
+  .menu-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: var(--rule);
+    align-items: baseline;
+  }
+  .menu-row h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+  .menu-row .desc {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-top: 4px;
+    max-width: 540px;
+  }
+  .menu-row .price {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    color: var(--ink);
+    font-weight: 500;
+    padding-top: 3px;
+    text-align: right;
+  }
+  .menu-foot {
+    margin-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* Room — image gallery rhythm ------------------------------------ */
+  .room { background: var(--bg); }
+  .gallery {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 18px;
+  }
+  @media (max-width: 820px) { .gallery { grid-template-columns: 1fr; } }
+  .frame {
+    background: var(--soft);
+    overflow: hidden;
+    position: relative;
+  }
+  .frame img { width: 100%; height: 100%; object-fit: cover; }
+  .frame .image-caption { left: 14px; bottom: 14px; }
+  .frame.wide { aspect-ratio: 16 / 11; }
+  .frame.tall { aspect-ratio: 3 / 4; }
+  .frame.detail { aspect-ratio: 5 / 4; }
+  .gallery-col { display: grid; gap: 18px; }
+
+  /* Proof strip ---------------------------------------------------- */
+  .proof {
+    background: var(--white);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (max-width: 820px) { .proof-grid { grid-template-columns: 1fr 1fr; } }
+  .proof-cell {
+    padding: 28px var(--gutter);
+    border-right: var(--rule);
+  }
+  .proof-grid > .proof-cell:last-child { border-right: 0; }
+  .proof-cell strong {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1;
+  }
+  .proof-cell .small { margin-top: 8px; }
+
+  /* Review --------------------------------------------------------- */
+  .review-section { background: var(--bg); }
+  .review {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 56px;
+  }
+  @media (max-width: 820px) { .review { grid-template-columns: 1fr; gap: 18px; } }
+  .review blockquote {
+    border-left: 3px solid var(--sage);
+    padding-left: 28px;
+    max-width: 740px;
+    font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+    line-height: 1.35;
+    letter-spacing: -0.022em;
+    font-weight: 500;
+  }
+  .review cite {
+    display: block;
+    margin-top: 22px;
+    color: var(--ink-soft);
+    font-size: 0.86rem;
+    font-style: normal;
+  }
+
+  /* Visit ---------------------------------------------------------- */
+  .visit-section {
+    background: var(--white);
+    border-top: 2px solid var(--ink);
+  }
+  .visit {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: var(--rule);
+  }
+  @media (max-width: 820px) { .visit { grid-template-columns: 1fr; } }
+  .visit-card {
+    background: var(--white);
+    padding: 36px;
+  }
+  .visit-card h3 {
+    font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    font-weight: 690;
+    margin-bottom: 24px;
+  }
+  .info-list {
+    display: grid;
+    gap: 0;
+  }
+  .info-list div {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 18px;
+    border-top: var(--rule);
+    padding: 14px 0;
+    font-size: 0.92rem;
+  }
+  .info-list strong {
+    color: var(--ink);
+    font-weight: 600;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-top: 3px;
+  }
+  .info-list .val { color: var(--ink-soft); }
+  .info-list .val a { border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+
+  .map {
+    min-height: 320px;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,.06) 1px, transparent 1px),
+      linear-gradient(rgba(0,0,0,.06) 1px, transparent 1px),
+      var(--soft);
+    background-size: 44px 44px;
+    display: grid;
+    place-items: center;
+    color: var(--ink-soft);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+  }
+  .map::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 14px; height: 14px;
+    background: var(--coffee);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 6px rgba(155,95,37,0.22);
+  }
+
+  /* Footer --------------------------------------------------------- */
+  footer.site {
+    background: var(--bg);
+    border-top: 2px solid var(--ink);
+    padding: 64px 0 28px;
+  }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 52px;
+  }
+  @media (max-width: 820px) {
+    .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  footer.site .brand { font-size: 1.2rem; }
+  footer.site .tag {
+    margin-top: 18px;
+    color: var(--ink-soft);
+    max-width: 320px;
+    font-size: 0.92rem;
+  }
+  footer.site h5 {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  footer.site ul { list-style: none; display: grid; gap: 10px; }
+  footer.site ul a { font-size: 0.92rem; color: var(--ink); }
+  footer.site ul a:hover { color: var(--sage-dark); }
+  .copy {
+    border-top: var(--rule);
+    padding-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Reveal --------------------------------------------------------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<header class="site" id="siteHeader">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Lugo home">
+      <span class="brand-mark">LG</span>
+      <span>Lugo</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#room">The room</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <div class="nav-meta">
+      <span><span class="dot"></span>Open today · 8–4</span>
+    </div>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuBtn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M3 7h18M3 12h18M3 17h18" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div>
+          <div class="hero-kicker">
+            <span class="rule"></span>
+            <span class="label">Coffee · Bakery · Brunch</span>
+          </div>
+          <h1 class="display" style="margin-top: 28px;">Coffee, breakfast, and a quiet table near Stamford Quarter.</h1>
+        </div>
+        <div>
+          <p style="max-width: 480px; color: var(--ink-soft); margin-bottom: 28px;">A modern neighbourhood café in Altrincham serving proper coffee, fresh bakes, and unhurried mornings — six days a week.</p>
+          <div class="btn-row">
+            <a href="#menu" class="btn primary">See the menu</a>
+            <a href="#visit" class="btn">Find us</a>
+          </div>
+          <div class="hero-foot">
+            <div>
+              <strong>Open Mon – Sat</strong>
+              <span class="mono">08.00 — 16.00</span>
+            </div>
+            <div>
+              <strong>Altrincham, UK</strong>
+              <span class="mono">Stamford Quarter</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="images/540327767_122152750010790843_5871362199647316872_n.jpg" alt="Inside Lugo, looking towards the counter" />
+        <span class="image-caption">Counter / 08.14 weekday</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTER STRIP -->
+<section class="counter">
+  <div class="counter-grid">
+    <div class="counter-cell">
+      <span class="label">01 / Coffee</span>
+      <strong>Roasted by independents we trust</strong>
+      <span>House espresso plus rotating filters from across the UK and Europe.</span>
+    </div>
+    <div class="counter-cell">
+      <span class="label">02 / Bakery</span>
+      <strong>Baked in-house each morning</strong>
+      <span>Croissants, pastries, cakes, and a short rota of seasonal bakes.</span>
+    </div>
+    <div class="counter-cell">
+      <span class="label">03 / Brunch</span>
+      <strong>A short, careful menu</strong>
+      <span>Veg-forward plates from local growers — properly cooked, never rushed.</span>
+    </div>
+    <div class="counter-cell">
+      <span class="label">04 / The room</span>
+      <strong>Sage seating, black counters</strong>
+      <span>Pale timber, warm light, and a counter you can lean on.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="block about" id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="label">01 / About</div>
+      <div>
+        <h2 class="section-title">A small café built around proper coffee, fresh bakes, and the people who come for them.</h2>
+        <p class="section-note">Specific beats over sentimental paragraphs. Lugo is a counter-service café — friendly, considered, and built for both ten-minute stops and slow Sunday mornings.</p>
+      </div>
+    </div>
+    <div class="about-body reveal">
+      <div class="portrait">
+        <img src="images/487486818_122118943574790843_5374696814648542492_n.jpg" alt="A pour over coffee being prepared on the counter" />
+      </div>
+      <div class="about-copy">
+        <h2>We opened Lugo to make the coffee shop we always wanted to find.</h2>
+        <p>Unhurried, considered, and full of regulars who feel like they belong. Every cup is poured from beans roasted by independents we trust, and every bake leaves the kitchen the morning it's made.</p>
+        <p>The room follows the same logic. Pale timber, sage upholstery, black surfaces, white ceramics, plants on the sill, and enough quiet to read a book if you want to.</p>
+        <div class="values">
+          <div><strong>Independent</strong><span>Family-run, single site, no chain to feed.</span></div>
+          <div><strong>Local</strong><span>Produce from growers and bakers around Altrincham.</span></div>
+          <div><strong>Seasonal</strong><span>The menu shifts gently through the year.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="block menu-section" id="menu">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="label">02 / Menu</div>
+      <div>
+        <h2 class="section-title">A menu-board rhythm. Prices in mono, descriptions in plain text, no card clutter.</h2>
+        <p class="section-note">Changes through the week. Vegetarian and vegan options every day; please ask about allergens at the counter.</p>
+      </div>
+    </div>
+
+    <div class="menu-tabs reveal">
+      <span class="menu-tab is-active">Coffee</span>
+      <span class="menu-tab">Bakery</span>
+      <span class="menu-tab">Brunch</span>
+      <span class="menu-tab">Cold</span>
+    </div>
+
+    <div class="menu-list reveal">
+      <div class="menu-row">
+        <div>
+          <h3>Flat white</h3>
+          <p class="desc">Double shot of house espresso, steamed whole milk, fine microfoam.</p>
+        </div>
+        <div class="price">£3.40</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <h3>Filter — rotating origin</h3>
+          <p class="desc">Brewed by the cup. This week: Ethiopia Guji, light and floral.</p>
+        </div>
+        <div class="price">£3.80</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <h3>Cortado</h3>
+          <p class="desc">Espresso cut with a short stretch of warm milk.</p>
+        </div>
+        <div class="price">£3.20</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <h3>Matcha latte</h3>
+          <p class="desc">Ceremonial-grade matcha whisked into oat or whole milk.</p>
+        </div>
+        <div class="price">£4.20</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <h3>Hot chocolate</h3>
+          <p class="desc">Single-origin dark, lightly sweetened, finished with cream on request.</p>
+        </div>
+        <div class="price">£3.90</div>
+      </div>
+      <div class="menu-row">
+        <div>
+          <h3>Americano</h3>
+          <p class="desc">Double shot of espresso lengthened with hot water.</p>
+        </div>
+        <div class="price">£3.10</div>
+      </div>
+    </div>
+
+    <div class="menu-foot">
+      <span class="label">Full menu in store · changes weekly</span>
+      <a href="#" class="text-link">See the full menu →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ROOM / GALLERY -->
+<section class="block room" id="room">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="label">03 / The room</div>
+      <div>
+        <h2 class="section-title">Bright interiors, black tables, white ceramics, pale timber, and green details.</h2>
+        <p class="section-note">A counter you can lean on. A few seats by the window, a long bench at the back, plants on the sills, and enough quiet to read a book.</p>
+      </div>
+    </div>
+    <div class="gallery reveal">
+      <div class="frame wide">
+        <img src="images/534411730_122150019236790843_6013541455202831100_n.jpg" alt="Inside Lugo, light through the window" />
+        <span class="image-caption">Window seat / morning</span>
+      </div>
+      <div class="gallery-col">
+        <div class="frame detail">
+          <img src="images/487505046_122118943646790843_6171120188053150695_n.jpg" alt="Tabletop with coffee and pastry" />
+          <span class="image-caption">Cortado / croissant</span>
+        </div>
+        <div class="frame detail">
+          <img src="images/536106106_122150595974790843_8509739698126024699_n.jpg" alt="Fresh bakes on the counter" />
+          <span class="image-caption">Counter / 09.30</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="proof-grid">
+    <div class="proof-cell">
+      <strong>2,400+</strong>
+      <p class="small">Cups poured in an average week.</p>
+    </div>
+    <div class="proof-cell">
+      <strong>6 days</strong>
+      <p class="small">Open Monday to Saturday, year round.</p>
+    </div>
+    <div class="proof-cell">
+      <strong>11 roasters</strong>
+      <p class="small">Independent UK & European partners on rotation.</p>
+    </div>
+    <div class="proof-cell">
+      <strong>Since 2024</strong>
+      <p class="small">Family-run, single site, Altrincham.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW -->
+<section class="block review-section">
+  <div class="wrap">
+    <div class="review reveal">
+      <div class="label">04 / In their words</div>
+      <div>
+        <blockquote>"It's the small things — the way they remember your order, the way the light moves through the window at 9am, the way the croissants come out steaming. Lugo just feels right."</blockquote>
+        <cite>— Local regular, Altrincham</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit-section" id="visit">
+  <div class="wrap" style="padding-top: clamp(72px, 9vw, 112px); padding-bottom: clamp(72px, 9vw, 112px);">
+    <div class="section-head reveal">
+      <div class="label">05 / Visit</div>
+      <div>
+        <h2 class="section-title">Location and opening information — the things you actually came here to find.</h2>
+      </div>
+    </div>
+    <div class="visit reveal">
+      <div class="visit-card">
+        <h3>Find us in Altrincham.</h3>
+        <div class="info-list">
+          <div><strong>Address</strong><span class="val">Stamford Quarter<br />Altrincham<br />Greater Manchester</span></div>
+          <div><strong>Weekdays</strong><span class="val">08.00 — 16.00</span></div>
+          <div><strong>Weekends</strong><span class="val">09.00 — 17.00</span></div>
+          <div><strong>Email</strong><span class="val"><a href="mailto:hello@lugo.coffee">hello@lugo.coffee</a></span></div>
+          <div><strong>Instagram</strong><span class="val"><a href="https://www.instagram.com/" target="_blank" rel="noopener">@lugo.coffee</a></span></div>
+        </div>
+        <div style="margin-top: 32px;">
+          <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn primary">Open in Maps</a>
+        </div>
+      </div>
+      <div class="map">
+        Stamford Quarter, Altrincham
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand" aria-label="Lugo home">
+          <span class="brand-mark">LG</span>
+          <span>Lugo</span>
+        </a>
+        <p class="tag">Coffee, bakery, and unhurried mornings in Altrincham. Counter service, six days a week.</p>
+      </div>
+      <div>
+        <h5>Visit</h5>
+        <ul>
+          <li><a href="#visit">Address &amp; hours</a></li>
+          <li><a href="https://maps.google.com" target="_blank" rel="noopener">Open in Maps</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>The café</h5>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#room">The room</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Follow</h5>
+        <ul>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:hello@lugo.coffee">Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span id="year"></span> Lugo Coffee — Altrincham</span>
+      <span>Made with care</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.querySelectorAll('.menu-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
